@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  GSL
+
+  Created by William Lyons on 2016-12-03.
+  Copyright © 2016 William Lyons. All rights reserved.
+*/
+
+"ok" = "OK";
+"alert_title" = "GSL Alert";
+
+"error_network_message" = "A network error has occured. Pull to refresh when connectivity has been restored.";
+"today_heading" = "Today";
+"forcast_heading" = "3 day forcast";

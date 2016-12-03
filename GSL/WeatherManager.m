@@ -13,10 +13,14 @@
     WeatherDay *weatherDay;
 }
 
--(void)processData:(NSDictionary*)dataDict
+-(void)processData:(NSData*)data
 {
     weatherDay = [WeatherDay new];
     
+    NSError *error;
+    NSDictionary *dataDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+    NSAssert(dataDict != nil, @"Weather JSON is nill");
+
     weatherDay.city = dataDict[@"name"];
     
     NSDictionary *main = dataDict[@"main"];

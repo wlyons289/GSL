@@ -11,7 +11,7 @@
 
 @interface WeatherManager : NSObject
 
--(void)processData:(NSDictionary*)dict;
+-(void)processData:(NSData*)data;
 
 -(WeatherDay*)todaysWeather;
 

@@ -1,0 +1,49 @@
+{
+    base = stations;
+    clouds =     {
+        all = 90;
+    };
+    cod = 200;
+    coord =     {
+        lat = "49.25";
+        lon = "-123.12";
+    };
+    dt = 1480721700;
+    id = 6173331;
+    main =     {
+        humidity = 93;
+        pressure = 1016;
+        temp = "280.63";
+        "temp_max" = "282.15";
+        "temp_min" = "276.15";
+    };
+    name = Vancouver;
+    sys =     {
+        country = CA;
+        id = 3359;
+        message = "0.1826";
+        sunrise = 1480780168;
+        sunset = 1480810526;
+        type = 1;
+    };
+    visibility = 24140;
+    weather =     (
+                {
+            description = "light intensity shower rain";
+            icon = 09d;
+            id = 520;
+            main = Rain;
+        },
+                {
+            description = mist;
+            icon = 50d;
+            id = 701;
+            main = Mist;
+        }
+    );
+    wind =     {
+        deg = 140;
+        gust = "10.3";
+        speed = "6.2";
+    };
+}

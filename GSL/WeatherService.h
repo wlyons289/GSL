@@ -24,6 +24,7 @@ static const NSString *apiKey = @"30cd047ae5ed7b3f99b563ff25762952";
 static NSString *notifyWeatherUpated = @"weatherUpdated";
 static NSString *notifyForcastUpated = @"forcastUpdated";
 static NSString *notifyLocationUpdated = @"locationUpdated";
+static NSString *notifyNetworkError = @"networkError";
 
 
 @interface WeatherService : NSObject <CLLocationManagerDelegate>

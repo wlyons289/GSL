@@ -50,14 +50,16 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if(!error) {
-            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-            NSAssert(dict != nil, @"Forcast JSON is nill");
-            [self.forcastManager processData:dict];
-
-            [[NSNotificationCenter defaultCenter] postNotificationName:notifyForcastUpated object:nil];
+            [self.forcastManager processData:data];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:notifyForcastUpated object:nil];
+            });
         }
         else {
-            NSLog(@"%@", error);
+//            NSLog(@"%@", error);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:notifyNetworkError object:nil];
+            });
         }
     }];
     [task resume];
@@ -70,16 +72,16 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if(!error) {
-            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-            NSAssert(dict != nil, @"Weather JSON is nill");
-            [self.weatherManager processData:dict];
-
+            [self.weatherManager processData:data];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [[NSNotificationCenter defaultCenter] postNotificationName:notifyWeatherUpated object:nil];
             });
         }
         else {
-            NSLog(@"%@", error);
+//            NSLog(@"%@", error);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:notifyNetworkError object:nil];
+            });
         }
     }];
     [task resume];

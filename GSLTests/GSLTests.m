@@ -7,6 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "WeatherManager.h"
+#import "ForcastManager.h"
 
 @interface GSLTests : XCTestCase
 
@@ -34,6 +36,40 @@
     [self measureBlock:^{
         // Put the code you want to measure the time of here.
     }];
+}
+
+-(void)testWeatherJson {
+    NSBundle *testBundle = [NSBundle bundleForClass:[self class]];
+    NSURL *jsonUrl = [testBundle URLForResource:@"weather2" withExtension:@"json"];
+    NSData *data = [NSData dataWithContentsOfURL:jsonUrl];
+    
+    WeatherManager *manager = [WeatherManager new];
+    [manager processData:data];
+    
+    XCTAssertNotNil(manager.todaysWeather);
+    XCTAssert(manager.todaysWeather.city.length != 0);
+    XCTAssert(manager.todaysWeather.humidity.floatValue != 0.0);
+    
+}
+
+-(void)testForcastJson {
+    NSBundle *testBundle = [NSBundle bundleForClass:[self class]];
+    NSURL *jsonUrl = [testBundle URLForResource:@"forcast2" withExtension:@"json"];
+    NSData *data = [NSData dataWithContentsOfURL:jsonUrl];
+    
+    ForcastManager *manager = [ForcastManager new];
+    [manager processData:data];
+    
+    XCTAssertGreaterThan(manager.count, 0);
+
+    ForcastDay *day1 = [manager forcastForDayAtRow:0];
+    ForcastDay *day2 = [manager forcastForDayAtRow:1];
+    ForcastDay *day3 = [manager forcastForDayAtRow:2];
+    
+    XCTAssertNotNil(day1);
+    XCTAssertNotNil(day2);
+    XCTAssertNotNil(day3);
+    
 }
 
 @end

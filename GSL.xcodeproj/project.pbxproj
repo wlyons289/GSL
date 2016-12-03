@@ -22,6 +22,9 @@
 		E4C7B64B1DF2607100495EB5 /* WeatherTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7B64A1DF2607100495EB5 /* WeatherTableViewCell.m */; };
 		E4C7B64E1DF2608000495EB5 /* ForcastTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7B64D1DF2608000495EB5 /* ForcastTableViewCell.m */; };
 		E4C7B6511DF265A600495EB5 /* WeatherDay.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7B6501DF265A600495EB5 /* WeatherDay.m */; };
+		E4FAA52F1DF3729800D35A02 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E4FAA52E1DF3729800D35A02 /* Localizable.strings */; };
+		E4FAA5351DF37BC100D35A02 /* forcast2.json in Resources */ = {isa = PBXBuildFile; fileRef = E4FAA5331DF37BC100D35A02 /* forcast2.json */; };
+		E4FAA5361DF37BC100D35A02 /* weather2.json in Resources */ = {isa = PBXBuildFile; fileRef = E4FAA5341DF37BC100D35A02 /* weather2.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +75,10 @@
 		E4C7B64D1DF2608000495EB5 /* ForcastTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForcastTableViewCell.m; sourceTree = "<group>"; };
 		E4C7B64F1DF265A600495EB5 /* WeatherDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherDay.h; sourceTree = "<group>"; };
 		E4C7B6501DF265A600495EB5 /* WeatherDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherDay.m; sourceTree = "<group>"; };
+		E4FAA52E1DF3729800D35A02 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		E4FAA5301DF3746400D35A02 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		E4FAA5331DF37BC100D35A02 /* forcast2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = forcast2.json; sourceTree = "<group>"; };
+		E4FAA5341DF37BC100D35A02 /* weather2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = weather2.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +143,8 @@
 				E4C7B64A1DF2607100495EB5 /* WeatherTableViewCell.m */,
 				E4C7B64C1DF2608000495EB5 /* ForcastTableViewCell.h */,
 				E4C7B64D1DF2608000495EB5 /* ForcastTableViewCell.m */,
+				E4FAA52E1DF3729800D35A02 /* Localizable.strings */,
+				E4FAA5301DF3746400D35A02 /* Constants.h */,
 			);
 			path = GSL;
 			sourceTree = "<group>";
@@ -151,6 +160,8 @@
 		E4A6FD761DF21E320083375E /* GSLTests */ = {
 			isa = PBXGroup;
 			children = (
+				E4FAA5331DF37BC100D35A02 /* forcast2.json */,
+				E4FAA5341DF37BC100D35A02 /* weather2.json */,
 				E4A6FD771DF21E320083375E /* GSLTests.m */,
 				E4A6FD791DF21E320083375E /* Info.plist */,
 			);
@@ -293,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4A6FD6D1DF21E320083375E /* LaunchScreen.storyboard in Resources */,
+				E4FAA52F1DF3729800D35A02 /* Localizable.strings in Resources */,
 				E4A6FD6A1DF21E320083375E /* Assets.xcassets in Resources */,
 				E4A6FD681DF21E320083375E /* Main.storyboard in Resources */,
 			);
@@ -302,6 +314,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4FAA5351DF37BC100D35A02 /* forcast2.json in Resources */,
+				E4FAA5361DF37BC100D35A02 /* weather2.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

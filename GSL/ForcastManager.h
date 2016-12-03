@@ -11,7 +11,7 @@
 
 @interface ForcastManager : NSObject
 
--(void)processData:(NSDictionary*)dict;
+-(void)processData:(NSData*)data;
 -(ForcastDay*)forcastForDayAtRow:(NSInteger)row;
 -(NSInteger)count;
 

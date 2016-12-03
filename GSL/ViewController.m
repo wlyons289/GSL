@@ -10,6 +10,7 @@
 #import "WeatherService.h"
 #import "WeatherTableViewCell.h"
 #import "ForcastTableViewCell.h"
+#import "Constants.h"
 
 @interface ViewController ()
 
@@ -25,7 +26,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(weatherUpdated:) name:notifyWeatherUpated object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(forcastUpdated:) name:notifyForcastUpated object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationUpdated:) name:notifyLocationUpdated object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkError:) name:notifyNetworkError object:nil];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,11 +40,8 @@
 }
 - (IBAction)refresh:(id)sender
 {
-    NSLog(@"refresh");
-    [sender endRefreshing];
-    
     [self requestData];
-    
+    [sender endRefreshing];
 }
 
 -(void)requestData
@@ -50,14 +49,26 @@
     WeatherService *service = [WeatherService sharedInstance];
     if(service.currentCoordinates.latitude != 0.0 && service.currentCoordinates.longitude != 0.0) {
         [service requestWeather];
-        [service requestForcast];
     }
+}
+
+-(void)networkError:(NSNotification* )notification
+{
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"alert_title", nil)
+                                                                    message:NSLocalizedString(@"error_network_message", nil)
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"ok", nil) style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 -(void)weatherUpdated:(NSNotification* )notification
 {
     NSLog(@"weather updated");
     [self.tableView reloadData];
+    WeatherService *service = [WeatherService sharedInstance];
+    [service requestForcast];
 }
 
 -(void)forcastUpdated:(NSNotification* )notification
@@ -78,15 +89,15 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if(section == 0)
-        return @"Today"; // TODO: localize
+        return NSLocalizedString(@"today_heading", nil);
     else
-        return @"3 day forcast";
+        return NSLocalizedString(@"forcast_heading", nil);
     
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2; // TODO: const
+    return tableSections;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -121,8 +132,8 @@
         case 1:
         {
             ForcastTableViewCell *forcastCell = (ForcastTableViewCell*)[tableView dequeueReusableCellWithIdentifier:forcastCellId];
-            ForcastDay *f = [service.forcastManager forcastForDayAtRow:indexPath.row];
-            [forcastCell configureWithForcast:f];
+            ForcastDay *forcast = [service.forcastManager forcastForDayAtRow:indexPath.row];
+            [forcastCell configureWithForcast:forcast];
             cell = forcastCell;
             break;
         }
@@ -136,9 +147,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.section == 0) {
-        return 140; // TODO: const
+        return weatherCellHeight;
     }
-    else return 220;
+    else return forcastCellHeight;
 }
 
 @end

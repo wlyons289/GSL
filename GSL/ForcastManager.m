@@ -13,11 +13,16 @@
     NSMutableArray *days;
 }
 
--(void)processData:(NSDictionary*)dict
+-(void)processData:(NSData*)data
 {
-    days = [NSMutableArray new];
-    NSArray *list = dict[@"list"];
     
+    days = [NSMutableArray new];
+    
+    NSError *error;
+    NSDictionary *dataDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+    NSAssert(dataDict != nil, @"Forcast JSON is nill");
+
+    NSArray *list = dataDict[@"list"];
     for(NSDictionary *forcastDict in list)
     {
         ForcastDay *forcast = [ForcastDay new];
