@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import "WeatherService.h"
+#import "WeatherTableViewCell.h"
+#import "ForcastTableViewCell.h"
 
 @interface ViewController ()
 
@@ -55,19 +57,13 @@
 -(void)weatherUpdated:(NSNotification* )notification
 {
     NSLog(@"weather updated");
-    WeatherService *service = [WeatherService sharedInstance];
-    WeatherManager *weatherManager = service.weatherManager;
-    self.labelCity.text = weatherManager.city;
-    self.labelTemp.text = weatherManager.temp;
-    self.labelHumidity.text = weatherManager.humidity;
-    self.labelDescription.text = weatherManager.weatherDesc;
-    
+    [self.tableView reloadData];
 }
 
 -(void)forcastUpdated:(NSNotification* )notification
 {
-    NSLog(@"weather updated");
-    
+    NSLog(@"forcast updated");
+    [self.tableView reloadData];
     
 }
 
@@ -76,5 +72,73 @@
     [self requestData];
 }
 
+
+#pragma mark - Table view datasource
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if(section == 0)
+        return @"Today"; // TODO: localize
+    else
+        return @"3 day forcast";
+    
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2; // TODO: const
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if(section == 0) {
+        return 1;
+    }
+    else
+    {
+        WeatherService *service = [WeatherService sharedInstance];
+        return service.forcastManager.count;
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *weatherCellId = @"WEATHER_CELL";
+    static NSString *forcastCellId = @"FORCAST_CELL";
+    
+    WeatherService *service = [WeatherService sharedInstance];
+    
+    UITableViewCell *cell = nil;
+    switch(indexPath.section)
+    {
+        case 0:
+        {
+            WeatherTableViewCell *weatherCell = (WeatherTableViewCell*)[tableView dequeueReusableCellWithIdentifier:weatherCellId];
+            [weatherCell configureWithWeather:service.weatherManager.todaysWeather];
+            cell = weatherCell;
+            break;
+        }
+        case 1:
+        {
+            ForcastTableViewCell *forcastCell = (ForcastTableViewCell*)[tableView dequeueReusableCellWithIdentifier:forcastCellId];
+            ForcastDay *f = [service.forcastManager forcastForDayAtRow:indexPath.row];
+            [forcastCell configureWithForcast:f];
+            cell = forcastCell;
+            break;
+        }
+    }
+
+    return cell;
+}
+
+#pragma mark - Table view delegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(indexPath.section == 0) {
+        return 140; // TODO: const
+    }
+    else return 220;
+}
 
 @end

@@ -19,6 +19,9 @@
 		E4A6FD981DF245B50083375E /* WeatherManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A6FD971DF245B50083375E /* WeatherManager.m */; };
 		E4A6FD9B1DF245CD0083375E /* ForcastManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A6FD9A1DF245CD0083375E /* ForcastManager.m */; };
 		E4A6FD9E1DF25C670083375E /* ForcastDay.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A6FD9D1DF25C670083375E /* ForcastDay.m */; };
+		E4C7B64B1DF2607100495EB5 /* WeatherTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7B64A1DF2607100495EB5 /* WeatherTableViewCell.m */; };
+		E4C7B64E1DF2608000495EB5 /* ForcastTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7B64D1DF2608000495EB5 /* ForcastTableViewCell.m */; };
+		E4C7B6511DF265A600495EB5 /* WeatherDay.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7B6501DF265A600495EB5 /* WeatherDay.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +66,12 @@
 		E4A6FD9A1DF245CD0083375E /* ForcastManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForcastManager.m; sourceTree = "<group>"; };
 		E4A6FD9C1DF25C670083375E /* ForcastDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForcastDay.h; sourceTree = "<group>"; };
 		E4A6FD9D1DF25C670083375E /* ForcastDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForcastDay.m; sourceTree = "<group>"; };
+		E4C7B6491DF2607100495EB5 /* WeatherTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherTableViewCell.h; sourceTree = "<group>"; };
+		E4C7B64A1DF2607100495EB5 /* WeatherTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherTableViewCell.m; sourceTree = "<group>"; };
+		E4C7B64C1DF2608000495EB5 /* ForcastTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForcastTableViewCell.h; sourceTree = "<group>"; };
+		E4C7B64D1DF2608000495EB5 /* ForcastTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForcastTableViewCell.m; sourceTree = "<group>"; };
+		E4C7B64F1DF265A600495EB5 /* WeatherDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherDay.h; sourceTree = "<group>"; };
+		E4C7B6501DF265A600495EB5 /* WeatherDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherDay.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +122,7 @@
 		E4A6FD5C1DF21E320083375E /* GSL */ = {
 			isa = PBXGroup;
 			children = (
+				E4C7B6521DF266B800495EB5 /* Model */,
 				E4A6FD601DF21E320083375E /* AppDelegate.h */,
 				E4A6FD611DF21E320083375E /* AppDelegate.m */,
 				E4A6FD631DF21E320083375E /* ViewController.h */,
@@ -122,14 +132,10 @@
 				E4A6FD6B1DF21E320083375E /* LaunchScreen.storyboard */,
 				E4A6FD6E1DF21E320083375E /* Info.plist */,
 				E4A6FD5D1DF21E320083375E /* Supporting Files */,
-				E4A6FD931DF21F790083375E /* WeatherService.h */,
-				E4A6FD941DF21F790083375E /* WeatherService.m */,
-				E4A6FD961DF245B50083375E /* WeatherManager.h */,
-				E4A6FD971DF245B50083375E /* WeatherManager.m */,
-				E4A6FD991DF245CD0083375E /* ForcastManager.h */,
-				E4A6FD9A1DF245CD0083375E /* ForcastManager.m */,
-				E4A6FD9C1DF25C670083375E /* ForcastDay.h */,
-				E4A6FD9D1DF25C670083375E /* ForcastDay.m */,
+				E4C7B6491DF2607100495EB5 /* WeatherTableViewCell.h */,
+				E4C7B64A1DF2607100495EB5 /* WeatherTableViewCell.m */,
+				E4C7B64C1DF2608000495EB5 /* ForcastTableViewCell.h */,
+				E4C7B64D1DF2608000495EB5 /* ForcastTableViewCell.m */,
 			);
 			path = GSL;
 			sourceTree = "<group>";
@@ -158,6 +164,23 @@
 				E4A6FD841DF21E320083375E /* Info.plist */,
 			);
 			path = GSLUITests;
+			sourceTree = "<group>";
+		};
+		E4C7B6521DF266B800495EB5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E4A6FD931DF21F790083375E /* WeatherService.h */,
+				E4A6FD941DF21F790083375E /* WeatherService.m */,
+				E4A6FD961DF245B50083375E /* WeatherManager.h */,
+				E4A6FD971DF245B50083375E /* WeatherManager.m */,
+				E4A6FD991DF245CD0083375E /* ForcastManager.h */,
+				E4A6FD9A1DF245CD0083375E /* ForcastManager.m */,
+				E4C7B64F1DF265A600495EB5 /* WeatherDay.h */,
+				E4C7B6501DF265A600495EB5 /* WeatherDay.m */,
+				E4A6FD9C1DF25C670083375E /* ForcastDay.h */,
+				E4A6FD9D1DF25C670083375E /* ForcastDay.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,10 +320,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4A6FD9B1DF245CD0083375E /* ForcastManager.m in Sources */,
+				E4C7B6511DF265A600495EB5 /* WeatherDay.m in Sources */,
 				E4A6FD951DF21F790083375E /* WeatherService.m in Sources */,
 				E4A6FD651DF21E320083375E /* ViewController.m in Sources */,
 				E4A6FD9E1DF25C670083375E /* ForcastDay.m in Sources */,
+				E4C7B64B1DF2607100495EB5 /* WeatherTableViewCell.m in Sources */,
 				E4A6FD621DF21E320083375E /* AppDelegate.m in Sources */,
+				E4C7B64E1DF2608000495EB5 /* ForcastTableViewCell.m in Sources */,
 				E4A6FD5F1DF21E320083375E /* main.m in Sources */,
 				E4A6FD981DF245B50083375E /* WeatherManager.m in Sources */,
 			);
@@ -538,6 +564,7 @@
 				E4A6FD891DF21E320083375E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E4A6FD8A1DF21E320083375E /* Build configuration list for PBXNativeTarget "GSLTests" */ = {
 			isa = XCConfigurationList;
@@ -546,6 +573,7 @@
 				E4A6FD8C1DF21E320083375E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E4A6FD8D1DF21E320083375E /* Build configuration list for PBXNativeTarget "GSLUITests" */ = {
 			isa = XCConfigurationList;
@@ -554,6 +582,7 @@
 				E4A6FD8F1DF21E320083375E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

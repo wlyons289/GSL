@@ -13,6 +13,7 @@
 {
     NSURLSession *session;
     CLLocationManager *locationManager;
+    NSDate *locationLastUpdated;
 }
 
 -(id)init {
@@ -50,8 +51,7 @@
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if(!error) {
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-            NSLog(@"%@", dict);
-            // pass dict to parser
+            NSAssert(dict != nil, @"Forcast JSON is nill");
             [self.forcastManager processData:dict];
 
             [[NSNotificationCenter defaultCenter] postNotificationName:notifyForcastUpated object:nil];
@@ -71,8 +71,7 @@
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if(!error) {
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-            NSLog(@"%@", dict);
-            // pass dict to parser
+            NSAssert(dict != nil, @"Weather JSON is nill");
             [self.weatherManager processData:dict];
 
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -100,8 +99,6 @@
     locationManager = [[CLLocationManager alloc] init];
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
-    // Being compiled with a Base SDK of iOS 8 or later
-    // Now do a runtime check to be sure the method is supported
     if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])
     {
         [locationManager requestWhenInUseAuthorization];
@@ -110,9 +107,6 @@
     {
         // No such method on this device - do something else as needed
     }
-#else
-    // Being compiled with a Base SDK of iOS 7.x or earlier
-    // No such method - do something else as needed
 #endif
     
     locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
@@ -132,31 +126,29 @@
 }
 
 
-
-
-
-
-#pragma mark -
-#pragma mark CLLocationManagerDelegate
+#pragma mark - CLLocationManagerDelegate
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
     CLLocation *location = [locations lastObject];
     self.currentCoordinates = location.coordinate;
+    
 
     NSTimeInterval locationAge = -[location.timestamp timeIntervalSinceNow];
     if (locationAge > 5.0) return;
     
     if (location.horizontalAccuracy < 0) return;
+
     
-    NSLog(@"Location UPDATED %f %f", location.coordinate.latitude, location.coordinate.longitude);
-    [[NSNotificationCenter defaultCenter] postNotificationName:notifyLocationUpdated object:nil];
-    
-    
-    
+    NSTimeInterval t = locationLastUpdated.timeIntervalSinceNow;
+    NSLog(@"Interval %f", t);
+    if(locationLastUpdated == nil || t < -10.0)
+    {
+        locationLastUpdated = [NSDate date];
+        NSLog(@"Location UPDATED %f %f", location.coordinate.latitude, location.coordinate.longitude);
+        [[NSNotificationCenter defaultCenter] postNotificationName:notifyLocationUpdated object:nil];
+    }
 }
-
-
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
@@ -164,9 +156,5 @@
     self.locationAvailable = NO;
     
 }
-
-
-
-
 
 @end

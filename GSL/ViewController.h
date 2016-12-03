@@ -8,12 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UITableViewController <UITabBarDelegate, UITableViewDataSource>
-
-@property (weak, nonatomic) IBOutlet UILabel *labelCity;
-@property (weak, nonatomic) IBOutlet UILabel *labelHumidity;
-@property (weak, nonatomic) IBOutlet UILabel *labelTemp;
-@property (weak, nonatomic) IBOutlet UILabel *labelDescription;
+@interface ViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end
 

@@ -41,5 +41,4 @@ static NSString *notifyLocationUpdated = @"locationUpdated";
 -(void)startLocationManager;
 
 
-
 @end

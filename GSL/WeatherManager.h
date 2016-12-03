@@ -7,15 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WeatherDay.h"
 
 @interface WeatherManager : NSObject
 
 -(void)processData:(NSDictionary*)dict;
 
-@property (nonatomic, strong) NSString *city;
-@property (nonatomic, strong) NSString *humidity;
-@property (nonatomic, strong) NSString *pressure;
-@property (nonatomic, strong) NSString *temp;
-@property (nonatomic, strong) NSString *weatherDesc;
+-(WeatherDay*)todaysWeather;
 
 @end

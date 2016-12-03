@@ -9,23 +9,31 @@
 #import "WeatherManager.h"
 
 @implementation WeatherManager
-
+{
+    WeatherDay *weatherDay;
+}
 
 -(void)processData:(NSDictionary*)dataDict
 {
+    weatherDay = [WeatherDay new];
     
-    self.city = dataDict[@"name"];
+    weatherDay.city = dataDict[@"name"];
     
     NSDictionary *main = dataDict[@"main"];
-    self.humidity = [NSString stringWithFormat:@"%@", main[@"humidity"]];
-    self.pressure = [NSString stringWithFormat:@"%@", main[@"pressure"]];
-    self.temp = [NSString stringWithFormat:@"%@", main[@"temp"]];
+    weatherDay.humidity = main[@"humidity"];
+    weatherDay.pressure = main[@"pressure"];
+    NSNumber *k = main[@"temp"];
+    NSNumber *c = @(k.floatValue - 273.15);
+    weatherDay.temp = c;
     
     NSArray *weather = dataDict[@"weather"];
     NSDictionary *weatherInfo = [weather objectAtIndex:0];
-    self.weatherDesc = weatherInfo[@"description"];
-    
-    
+    weatherDay.weatherDesc = weatherInfo[@"description"];
+}
+
+-(WeatherDay*)todaysWeather
+{
+    return weatherDay;
 }
 
 @end
