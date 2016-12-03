@@ -23,13 +23,11 @@
 
 -(void)configureWithForcast:(ForcastDay*)forcast
 {
-    self.humidity.text = forcast.humidity.stringValue;
-    self.pressure.text = forcast.pressure.stringValue;
-    self.temperature.text = [NSString stringWithFormat:@"%3.2f", forcast.temperature.floatValue];
+    self.humidity.text = [NSString stringWithFormat:@"%3.2f %%", forcast.humidity.floatValue];
+    self.pressure.text = [NSString stringWithFormat:@"%3.2f", forcast.pressure.floatValue];
+    self.temperature.text = [NSString stringWithFormat:@"%3.2f C", forcast.temperature.floatValue];
     self.summary.text = forcast.summary;
     self.wind.text = forcast.wind;
-    self.rain.text = forcast.rain;
-    self.snow.text = forcast.snow;
 }
 
 @end

@@ -25,8 +25,8 @@
 -(void)configureWithWeather:(WeatherDay*)weather
 {
     self.city.text = weather.city;
-    self.humidity.text = weather.humidity.stringValue;
-    self.temperature.text = [NSString stringWithFormat:@"%3.2f", weather.temp.floatValue];
+    self.humidity.text =  [NSString stringWithFormat:@"%3.2f %%", weather.humidity.floatValue];
+    self.temperature.text = [NSString stringWithFormat:@"%3.2f C", weather.temp.floatValue];
     self.summary.text = weather.weatherDesc;
 }
 

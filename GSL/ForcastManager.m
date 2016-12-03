@@ -32,6 +32,13 @@
         NSNumber *k = main[@"temp"];
         NSNumber *c = @(k.floatValue - 273.15);
         forcast.temperature = c;
+        
+        NSDictionary *wind = forcastDict[@"wind"];
+        NSNumber *speed = wind[@"speed"];
+        NSNumber *deg = wind[@"deg"];
+        forcast.wind = [NSString stringWithFormat:@"%3.1f MPH Heading: %3.1f °", speed.floatValue, deg.floatValue];
+        
+        
         [days addObject:forcast];
     }
 }

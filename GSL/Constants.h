@@ -11,5 +11,5 @@
 static const NSInteger tableSections = 2;
 static const NSInteger tableRows = 3;
 static const NSInteger weatherCellHeight = 140;
-static const NSInteger forcastCellHeight = 220;
+static const NSInteger forcastCellHeight = 160;
 

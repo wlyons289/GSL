@@ -15,7 +15,5 @@
 @property (nonatomic, strong) NSNumber *temperature;
 @property (nonatomic, strong) NSString *summary;
 @property (nonatomic, strong) NSString *wind;
-@property (nonatomic, strong) NSString *rain;
-@property (nonatomic, strong) NSString *snow;
 
 @end
