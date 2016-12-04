@@ -33,6 +33,14 @@
         NSNumber *c = @(k.floatValue - 273.15);
         forcast.temperature = c;
         
+        NSArray *weathers = forcastDict[@"weather"];
+        if(weathers.count > 0)
+        {
+            NSDictionary *weather = weathers[0];
+            forcast.summary = weather[@"description"];
+            
+        }
+
         NSDictionary *wind = forcastDict[@"wind"];
         NSNumber *speed = wind[@"speed"];
         NSNumber *deg = wind[@"deg"];
